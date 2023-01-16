@@ -4,8 +4,7 @@ RUN pip install pandas \
     pip install openpyxl
 
 WORKDIR /app
-
 COPY pipeline.py customer-list.xlsx ./
-    
 
-ENTRYPOINT [ "bash" ]
+
+ENTRYPOINT [ "python", "pipeline.py" ]

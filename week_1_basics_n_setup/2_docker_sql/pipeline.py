@@ -1,6 +1,10 @@
 import pandas as pd
+import sys
 
-dataFrame = pd.read_excel('customer-list.xlsx',"Customer List")
+print(sys.argv)
+
+
+dataFrame = pd.read_excel(sys.argv[1],0)
 
 print(dataFrame.shape)
 
