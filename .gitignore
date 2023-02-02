@@ -1,5 +1,5 @@
 week_1_basics_n_setup/1_terraform_gcp/climate-team-1-0db41d457ca3.json
 week_1_basics_n_setup/2_docker_sql/ny_taxi_postgres_data
 week_1_basics_n_setup/.ssh
-week_2_workflow_orchestration\01_start\data
-week_2_workflow_orchestration\02_gcp\data
+week_2_workflow_orchestration/01_start/data
+week_2_workflow_orchestration/02_gcp/data
