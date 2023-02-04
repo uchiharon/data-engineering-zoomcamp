@@ -17,8 +17,8 @@ def fetch(dataset_url: str) -> pd.DataFrame:
 @task(log_prints=True)
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """Fix dtype issues"""
-    df['tpep_pickup_datetime'] =pd.to_datetime(df['tpep_pickup_datetime'])
-    df['tpep_dropoff_datetime'] =pd.to_datetime(df['tpep_dropoff_datetime'])
+    df['lpep_pickup_datetime'] =pd.to_datetime(df['lpep_pickup_datetime']) # change tpep_pickup_datetime to lpep_pickup_datetime
+    df['lpep_dropoff_datetime'] =pd.to_datetime(df['lpep_dropoff_datetime']) # repeat same thing here
     print(df.head(2))
     print(f'columns dtype: {df.dtypes}')
     print(f'columns: {df.shape[1]}')
