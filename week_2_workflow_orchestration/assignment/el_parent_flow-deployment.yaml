@@ -1,0 +1,56 @@
+###
+### A complete description of a Prefect Deployment for flow 'el-parent-flow'
+###
+name: Parameterized EL
+description: null
+version: ad6a89b3c58f67a3f79da2f17a7998d9
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: el-parent-flow
+manifest_path: null
+storage: null
+path: D:\uoc\data-engineering-zoomcamp\week_2_workflow_orchestration\assignment
+entrypoint: etl_gcs_to_bq.py:el_parent_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    color:
+      title: color
+      default: yellow
+      position: 0
+      type: string
+    year:
+      title: year
+      default: 2021
+      position: 1
+      type: integer
+    months:
+      title: months
+      default:
+      - 1
+      - 2
+      position: 2
+      type: array
+      items:
+        type: integer
+  required: null
+  definitions: null

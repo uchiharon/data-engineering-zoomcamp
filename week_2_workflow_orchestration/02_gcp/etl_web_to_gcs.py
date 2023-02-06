@@ -40,6 +40,7 @@ def write_gcs(path:Path) ->None:
     gcs_block.upload_from_path(
         from_path=path,
         to_path=path
+        
     )
     return
 
