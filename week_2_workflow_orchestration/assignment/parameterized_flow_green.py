@@ -40,8 +40,8 @@ def write_gcs(path:Path) ->None:
     #gcs_block = GcsBucket.load("zoom-gcs")
     gcs_block = GCS.load("zoom-gcs")
     gcs_block.write_path(
-        from_path=path,
-        to_path=path
+        path,
+        path
     )
     return
 
