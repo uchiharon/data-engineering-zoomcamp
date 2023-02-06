@@ -1,7 +1,8 @@
 from pathlib import Path
 import pandas as pd
 from prefect import flow, task
-from prefect_gcp.cloud_storage import GcsBucket
+#from prefect_gcp.cloud_storage import GcsBucket
+from prefect.filesystems import GCS
 from prefect.tasks import task_input_hash
 from datetime import timedelta
 from random import randint
@@ -36,7 +37,8 @@ def write_local(df:pd.DataFrame, color:str, dataset_file:str) -> Path:
 def write_gcs(path:Path) ->None:
     """Uploading local parquet file to gcs"""
 
-    gcs_block = GcsBucket.load("zoom-gcs")
+    #gcs_block = GcsBucket.load("zoom-gcs")
+    gcs_block = Gcs.load("zoom-gcs")
     gcs_block.upload_from_path(
         from_path=path,
         to_path=path

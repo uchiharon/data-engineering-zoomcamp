@@ -14,6 +14,20 @@ code: prefect deployment run etl-parent-flow/docker-flow-green -p "months=[1]" -
 Answer: 447770
 
 ## Question 2
-0 5 1 * *
+Answer: 0 5 1 * *
 
 ## Question 3
+
+Initially, I taugh it was my network that was bad for three days but when I observed the files sizes, I discovered they were large. When I check up the FQA, I discovered it was a timeout error and learned how to set it up.
+
+Answer: 14,851,920
+
+## Question 4
+I created the github storage bucket using the UI and also repected it with command line
+
+I built and apply my deployment with the below code:
+prefect deployment build week_2_workflow_orchestration/assignment/parameterized_flow_green.py:etl_parent_flow --name docker-flow-green-git -sb github/zoom-flow -a
+
+NOTE: Tips the repo is treated like your localhost, with the first directory as home
+
+Answer: 88605
