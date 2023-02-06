@@ -38,7 +38,7 @@ def write_gcs(path:Path) ->None:
     """Uploading local parquet file to gcs"""
 
     #gcs_block = GcsBucket.load("zoom-gcs")
-    gcs_block = Gcs.load("zoom-gcs")
+    gcs_block = GCS.load("zoom-gcs")
     gcs_block.upload_from_path(
         from_path=path,
         to_path=path
