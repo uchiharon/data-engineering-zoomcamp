@@ -17,8 +17,14 @@ def fetch(dataset_url: str) -> pd.DataFrame:
 @task(log_prints=True)
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """Fix dtype issues"""
-    df['tpep_pickup_datetime'] =pd.to_datetime(df['tpep_pickup_datetime'])
-    df['tpep_dropoff_datetime'] =pd.to_datetime(df['tpep_dropoff_datetime'])
+    df['dispatching_base_num'] = df['dispatching_base_num'].astype(str)
+    df['pickup_datetime'] =pd.to_datetime(df['pickup_datetime'])
+    df['dropOff_datetime'] =pd.to_datetime(df['dropOff_datetime'])
+    df['PUlocationID'] = df['PUlocationID'].astype(float)
+    df['DOlocationID'] = df['DOlocationID'].astype(float)
+    df['SR_Flag'] = df['SR_Flag'].astype(float)
+    df['Affiliated_base_number'] = df['Affiliated_base_number'].astype(str)
+
     print(df.head(2))
     print(f'columns dtype: {df.dtypes}')
     print(f'columns: {df.shape[1]}')
@@ -32,7 +38,7 @@ def write_local(df:pd.DataFrame, color:str, dataset_file:str) -> Path:
     df.to_parquet(path,compression="gzip")
     return path
 
-@task(retries=3)
+@task()
 def write_gcs(path:Path) ->None:
     """Uploading local parquet file to gcs"""
 
@@ -40,7 +46,8 @@ def write_gcs(path:Path) ->None:
     gcs_block.upload_from_path(
         from_path=path,
         to_path=path,
-        timeout=600
+        timeout=700
+        
     )
     return
 
@@ -57,14 +64,14 @@ def etl_web_to_gcs(color:str, year:int, month:int) -> None:
 
 @flow()
 def etl_parent_flow(
-    months: list[int] =[1], year:int =2021, color:str="yellow"
+    months: list[int] =[i + 1 for i in range(12)], year:int =2019, color:str="fhv"
 ):
     for month in months:
         etl_web_to_gcs(color,year,month)
     
     
 if __name__=='__main__':
-    color = "yellow"
-    months = [1,2,3]
-    year = 2021
+    color = "fhv"
+    months = [i + 1 for i in range(12)]
+    year = 2019
     etl_parent_flow(months,year,color)

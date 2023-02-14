@@ -31,3 +31,18 @@ prefect deployment build week_2_workflow_orchestration/assignment/parameterized_
 NOTE: Tips the repo is treated like your localhost, with the first directory as home
 
 Answer: 88605
+
+## Question 5
+
+I logged in to prefect cloud
+Created all necessary bucket
+Set up notification
+Deploy my flow 
+Run it 
+And got notification
+
+Answer: 514392
+
+
+## Question 6
+Answer: 8

@@ -7,4 +7,4 @@ prefect deployment build ./paramiterized_flow.py:etl_parent_flow -n "Parameteriz
 
 prefect deployment build ./paramiterized_flow.py:etl_parent_flow -n "Parameterized ETL" --cron "0 0 * * *"   #build deployment with schedule
 
-prefect deployment build ./paramiterized_flow.py:etl_parent_flow -n "Parameterized ETL" --cron "0 0 * * *" -a #a is to apply
+prefect deployment build ./paramiterized_flow.py:etl_parent_flow -n "Parameterized ETL" --cron "0 0 * * *" -a #a is to applyq
