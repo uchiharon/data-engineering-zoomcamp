@@ -7,3 +7,4 @@ sources:
     
     tables:
       - name: yellow_taxi_trips
+      - name: green_tripdata_2020
