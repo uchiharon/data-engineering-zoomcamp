@@ -1,10 +1,17 @@
 {{config(materialized='view')}}
 
+with tripdata as (
+    SELECT *, row_number() over(partition by cast(VendorID as int), lpep_pickup_datetime) as rn
+from {{source('staging','green_tripdata_2020')}}  where VendorID is not null
+)
+
+
+
 select
 
 -- identifiers
 
-    {{ dbt_utils.generate_surrogate_key(['VendorID','tpep_pickup_datetime']) }} as tripid,
+    {{ dbt_utils.generate_surrogate_key(['VendorID','lpep_pickup_datetime']) }} as tripid,
     cast(VendorID as INTEGER) as vendorid,
     cast(PULocationID	as INTEGER) as pickup_locationid,			
     cast(DOLocationID	as INTEGER) as	dropoff_locationid,	
@@ -12,15 +19,15 @@ select
 
 -- timestamps
     
-    cast(tpep_pickup_datetime as	TIMESTAMP) as pickup_datetime,			
-    cast(tpep_dropoff_datetime as	TIMESTAMP) as dropoff_datetime,
+    cast(lpep_pickup_datetime as	TIMESTAMP) as pickup_datetime,			
+    cast(lpep_dropoff_datetime as	TIMESTAMP) as dropoff_datetime,
 
 -- trip info  
     store_and_fwd_flag,
     cast(passenger_count as	INTEGER) as		passenger_count	,	
     cast(trip_distance as	numeric) as	trip_distance,
 -- add part
-    1 as trip_type,
+    cast(trip_type as	INTEGER) as	trip_type,
 
 -- payment info
 
@@ -36,11 +43,12 @@ select
     cast(improvement_surcharge as numeric) as improvement_surcharge,		
     cast(total_amount as numeric) as total_amount,		
     cast(congestion_surcharge as numeric) as congestion_surcharge,
-    0  as ehail_fee
+-- add
+    cast(ehail_fee as INTEGER) as ehail_fee
 
 
-from {{source('staging','yellow_taxi_trips')}}
-where vendorid is not null
+from tripdata
+where rn = 1
 
 -- dbt build -m <model.sql> --var 'is_test_run: false'
 
