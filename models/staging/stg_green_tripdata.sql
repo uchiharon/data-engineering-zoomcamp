@@ -2,7 +2,7 @@
 
 with tripdata as (
     SELECT *, row_number() over(partition by cast(VendorID as int), lpep_pickup_datetime) as rn
-from {{source('staging','green_tripdata_2020')}}  where VendorID is not null
+from {{source('staging','green_tripdata')}}  where VendorID is not null
 )
 
 
