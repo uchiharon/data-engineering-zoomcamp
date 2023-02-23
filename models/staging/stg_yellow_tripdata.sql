@@ -1,5 +1,10 @@
 {{config(materialized='view')}}
 
+with tripdata as (
+    SELECT *, row_number() over(partition by cast(VendorID as int), tpep_pickup_datetime) as rn
+from {{source('staging','yellow_tripdata')}}  where VendorID is not null
+)
+
 select
 
 -- identifiers
@@ -39,8 +44,8 @@ select
     0  as ehail_fee
 
 
-from {{source('staging','yellow_taxi_trips')}}
-where vendorid is not null
+from tripdata
+where rn = 1
 
 -- dbt build -m <model.sql> --var 'is_test_run: false'
 
