@@ -1,7 +1,7 @@
 {{config(materialized='view')}}
 
 with tripdata as (
-    SELECT *, row_number() over(partition by cast(VendorID as int), lpep_pickup_datetime) as rn
+    SELECT *, safe_cast(payment_type as INT64) as payment_types, row_number() over(partition by cast(VendorID as int), lpep_pickup_datetime) as rn
 from {{source('staging','green_tripdata')}}  where VendorID is not null
 )
 
@@ -31,9 +31,9 @@ select
 
 -- payment info
 
-    cast(payment_type as INTEGER) as payment_type,
+    cast(payment_types as INTEGER) as payment_type,
 
-    {{ get_payment_type_description('payment_type') }} as get_payment_type,	
+    {{ get_payment_type_description('payment_types') }} as get_payment_type,	
 
     cast(fare_amount as numeric) as fare_amount,			
     cast(extra as numeric) as extra	,		
