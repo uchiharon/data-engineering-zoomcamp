@@ -3,8 +3,14 @@ week_1_basics_n_setup/2_docker_sql/ny_taxi_postgres_data
 week_1_basics_n_setup/.ssh
 week_2_workflow_orchestration/01_start/data
 week_2_workflow_orchestration/02_gcp/data
+week_5_batch_processing/assignment/Q2
+week_5_batch_processing/assignment/fhvhv_tripdata_2021-06.csv.gz
+week_5_batch_processing/assignment/taxi_zone_lookup.csv
+week_5_batch_processing/Notebook/data
+week_5_batch_processing/Notebook/fhvhv
 # Default .gitignore content added by dbt Cloud
 target/
 dbt_packages/
 logs/
+week_5_batch_processing/Notebook/data
 # end dbt Cloud content
