@@ -21,8 +21,10 @@ class JsonConsumer:
                 if message is None or message == {}:
                     continue
                 for message_key, message_value in message.items():
+                    print(message_key)
                     for msg_val in message_value:
                         print(msg_val.key, msg_val.value)
+                    print(message_key)
             except KeyboardInterrupt:
                 break
 
