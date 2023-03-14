@@ -8,7 +8,8 @@ week_5_batch_processing/assignment/fhvhv_tripdata_2021-06.csv.gz
 week_5_batch_processing/assignment/taxi_zone_lookup.csv
 week_5_batch_processing/Notebook/data
 week_5_batch_processing/Notebook/fhvhv
-week_6_stream_processing\assignment\data
+week_6_stream_processing/assignment/data
+week_6_stream_processing/python/streams-example/pyspark/checkpoint
 seeds
 # Default .gitignore content added by dbt Cloud
 target/
