@@ -5,11 +5,10 @@ INPUT_DATA_PATH_green = 'data/green_tripdata_2019-01.csv.gz'
 
 BOOTSTRAP_SERVERS = 'localhost:9092'
 
-TOPIC_WINDOWED_FHV_PUID_COUNT = 'fhv_puid_counts_windowed'
-TOPIC_WINDOWED_GREEN_PUID_COUNT = 'green_puid_counts_windowed'
+TOPIC_WINDOWED_FHV_PUID_COUNT = CONSUME_TOPIC_FHV_CSV = 'fhv_puid_counts_windowed'
+TOPIC_WINDOWED_GREEN_PUID_COUNT = CONSUME_TOPIC_GREEN_CSV = 'green_puid_counts_windowed'
 
-PRODUCE_TOPIC_FHV_CSV = CONSUME_TOPIC_FHV_CSV = 'fhv_csv'
-PRODUCE_TOPIC_GREEN_CSV = CONSUME_TOPIC_GREEN_CSV = 'green_csv'
+
 
 FHV_SCHEMA = T.StructType(
     [T.StructField("dispatching_base_num", T.StringType()),
