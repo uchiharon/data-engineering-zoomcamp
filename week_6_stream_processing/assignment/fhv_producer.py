@@ -1,4 +1,5 @@
 import csv
+import gzip
 from time import sleep
 from typing import Dict
 from kafka import KafkaProducer
@@ -23,12 +24,12 @@ class RideCSVProducer:
     def read_records(resource_path: str):
         records, ride_keys = [], []
         i = 0
-        with open(resource_path, 'r') as f:
+        with gzip.open(resource_path, 'rt') as f:
             reader = csv.reader(f)
             header = next(reader)  # skip the header
             for row in reader:
                 # vendor_id, passenger_count, trip_distance, payment_type, total_amount
-                records.append(f'{row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[9]}, {row[16]}')
+                records.append(', '.join(row))
                 ride_keys.append(str(row[0]))
                 i += 1
                 if i == 5:
