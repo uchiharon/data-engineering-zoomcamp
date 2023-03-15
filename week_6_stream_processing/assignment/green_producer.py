@@ -30,8 +30,8 @@ class RideCSVProducer:
             header = next(reader)  # skip the header
             for row in reader:
                 # vendor_id, passenger_count, trip_distance, payment_type, total_amount
-                records.append(', '.join(row))
-                ride_keys.append(str(row[0]))
+                records.append(f'{row[0]}, {row[1]}, {row[2]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}')
+                ride_keys.append(str(row[5]))
                 i += 1
                 if i == 5:
                     break

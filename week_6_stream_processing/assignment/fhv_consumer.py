@@ -2,7 +2,7 @@ import argparse
 from typing import Dict, List
 from kafka import KafkaConsumer
 
-from settings import BOOTSTRAP_SERVERS, CONSUME_TOPIC_RIDES_CSV
+from settings import BOOTSTRAP_SERVERS, CONSUME_TOPIC_FHV_CSV
 
 
 class RideCSVConsumer:
@@ -31,7 +31,7 @@ class RideCSVConsumer:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Kafka Consumer')
-    parser.add_argument('--topic', type=str, default=CONSUME_TOPIC_RIDES_CSV)
+    parser.add_argument('--topic', type=str, default=CONSUME_TOPIC_FHV_CSV)
     args = parser.parse_args()
 
     topic = args.topic
