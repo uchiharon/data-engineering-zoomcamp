@@ -31,9 +31,9 @@ class RideCSVProducer:
                 # vendor_id, passenger_count, trip_distance, payment_type, total_amount
                 records.append(', '.join(row))
                 ride_keys.append(str(row[3]))
-                i += 1
-                if i == 5:
-                    break
+                # i += 1
+                # if i == 5:
+                #     break
         return zip(ride_keys, records)
 
     def publish(self, topic: str, records: [str, str]):
