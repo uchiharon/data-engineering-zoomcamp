@@ -1,11 +1,9 @@
 import csv
-import gzip
 from time import sleep
 from typing import Dict
 from kafka import KafkaProducer
 
-
-from settings import BOOTSTRAP_SERVERS, INPUT_DATA_PATH_green, TOPIC_WINDOWED_GREEN_PUID_COUNT
+from settings import BOOTSTRAP_SERVERS, INPUT_DATA_PATH_fhv, TOPIC_WINDOWED_FHV_PUID_COUNT
 
 
 def delivery_report(err, msg):
@@ -25,7 +23,7 @@ class RideCSVProducer:
     def read_records(resource_path: str):
         records, ride_keys = [], []
         i = 0
-        with gzip.open(resource_path, 'rt') as f:
+        with open(resource_path, 'r') as f:
             reader = csv.reader(f)
             header = next(reader)  # skip the header
             for row in reader:
@@ -59,6 +57,6 @@ if __name__ == "__main__":
         'value_serializer': lambda x: x.encode('utf-8')
     }
     producer = RideCSVProducer(props=config)
-    ride_records = producer.read_records(resource_path=INPUT_DATA_PATH_green)
+    ride_records = producer.read_records(resource_path=INPUT_DATA_PATH_fhv)
     print(ride_records)
-    producer.publish(topic=TOPIC_WINDOWED_GREEN_PUID_COUNT, records=ride_records)
+    producer.publish(topic=TOPIC_WINDOWED_FHV_PUID_COUNT, records=ride_records)
